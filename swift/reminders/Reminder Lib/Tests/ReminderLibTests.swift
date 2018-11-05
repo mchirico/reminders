@@ -4,11 +4,74 @@ import EventKit
 @testable import reminders
 
 
+// ref: https://developer.apple.com/documentation/xctest/asynchronous_tests_and_expectations/testing_asynchronous_operations_with_expectations
+
+
+
+class MocEKEventStore: EKEventStore {
+  
+  var error: Error?
+  var reminders = [EKReminder]()
+  var events = [EKEvent]()
+  var pred = NSPredicate()
+  
+  open override func requestAccess(to entityType: EKEntityType, completion: @escaping EKEventStoreRequestAccessCompletionHandler) {
+    
+    completion( true , error)
+    
+  }
+  
+  open override func save(_ reminder: EKReminder, commit: Bool) throws {
+    print("SAVE: \(reminder)")
+    reminders.append(reminder)
+  }
+  
+  open override func save(_ event: EKEvent, span: EKSpan, commit: Bool) throws {
+    events.append(event)
+  }
+  
+  
+  open override func fetchReminders(matching predicate: NSPredicate, completion: @escaping ([EKReminder]?) -> Void) -> Any {
+    
+    
+    
+    completion(reminders)
+    return "return"
+  }
+  
+  open override func predicateForReminders(in calendars: [EKCalendar]?) -> NSPredicate {
+    
+    return pred
+  }
+  
+  open override func remove(_ reminder: EKReminder, commit: Bool) throws {
+  
+    reminders = reminders.filter(){$0.title != reminder.title}
+    
+  }
+  
+  open override func remove(_ event: EKEvent, span: EKSpan) throws {
+    events = events.filter(){$0.title != event.title}
+  }
+  
+  open override func predicateForEvents(withStart startDate: Date, end endDate: Date, calendars: [EKCalendar]?) -> NSPredicate {
+    
+    return pred
+  }
+  
+  open override func events(matching predicate: NSPredicate) -> [EKEvent] {
+    
+    return events
+  }
+}
+
+
 class reminderLibTests: XCTestCase {
+
+  let rLib = Reminder(eventStore: MocEKEventStore())
+  //let rLib = Reminder() // Uncomment for live testing
   
-  let rLib = Reminder()
   let TestTitle = "Bozo Entry"
-  
   
   override func setUp() {
     let expectation = self.expectation(description: "Add Cal Event")
@@ -20,8 +83,6 @@ class reminderLibTests: XCTestCase {
     dateFormatter.timeZone = TimeZone.current
     let startDate = dateFormatter.date(from: dateString0)
     let endDate = dateFormatter.date(from: dateString1)
-    
-    let rLib = Reminder()
     
     rLib.addCalEvent(title: self.TestTitle, notes: "Notes on Bozo", startDate: startDate!, endDate: endDate!) {
       (h) in
@@ -49,8 +110,6 @@ class reminderLibTests: XCTestCase {
     let startDate = dateFormatter.date(from: dateString0)
     let endDate = dateFormatter.date(from: dateString1)
     
-    let rLib = Reminder()
-    
     rLib.removeEvent(title: self.TestTitle, startDate: startDate!, endDate: endDate!) {
       
       h in print("\(String(describing: h))")
@@ -58,6 +117,109 @@ class reminderLibTests: XCTestCase {
       
     }
     waitForExpectations(timeout: 5, handler: nil)
+    
+  }
+  
+  
+  func testCalculatingFinalPriceWithCoupon() {
+    let products = [
+      Product(name: "A", cost: 30),
+      Product(name: "B", cost: 80)
+    ]
+    
+    let coupon = Coupon(
+      code: "swiftbysundell",
+      discountPercentage: 30
+    )
+    
+    let price = PriceCalculator.calculateFinalPrice(
+      for: products,
+      applying: coupon
+    )
+    
+    XCTAssertEqual(price, 77)
+  }
+  
+  func testCalculatingFinalPriceWithoutCoupon() {
+    
+    let products = [
+      Product(name: "A", cost: 30),
+      Product(name: "B", cost: 80)
+    ]
+    
+    let price = PriceCalculator.calculateFinalPrice(
+      for: products,
+      applying: nil
+    )
+    
+    // We hard code the expected value here, rather than dynamically
+    // calculating it. That way we can avoid calculation mistakes
+    // and be more confident in our tests.
+    XCTAssertEqual(price, 110)
+  }
+  
+  
+  func testMoc() {
+    
+    let mocEKEventStore = MocEKEventStore()
+    let rLib = Reminder(eventStore: mocEKEventStore)
+    
+    rLib.addReminderHack(title: "junk", notes: "Notes", priority: 3, alarmTime: Date()) {
+      
+      (rfc) in
+      XCTAssert(rfc.granted == "granted true")
+      print("status: \(String(describing: rfc.status))")
+    }
+    
+    XCTAssert(mocEKEventStore.events.count == 0)
+    XCTAssert(mocEKEventStore.reminders.count == 1)
+    
+    let expectation = self.expectation(description: "remove no match")
+    rLib.removeReminders(title: "WAT", startDate: Date(), endDate: Date()) {
+      
+      (rfc) in
+      print("rfc in test: \(rfc)")
+       expectation.fulfill()
+    }
+    wait(for: [expectation], timeout: 3.0)
+    
+    // Reminder should not be found
+    XCTAssert(mocEKEventStore.events.count == 0)
+    XCTAssert(mocEKEventStore.reminders.count == 1)
+    
+    
+    let expectation2 = self.expectation(description: "remove match")
+    rLib.removeReminders(title: "junk", startDate: Date(), endDate: Date()) {
+      
+      (rfc) in
+      print("rfc in test: \(rfc)")
+      expectation2.fulfill()
+    }
+    wait(for: [expectation2], timeout: 3.0)
+    
+    // Reminder should be removed
+    XCTAssert(mocEKEventStore.events.count == 0)
+    XCTAssert(mocEKEventStore.reminders.count == 0)
+    
+    let expectation3 = self.expectation(description: "add cal event")
+    rLib.addCalEvent(title: "Cal0", notes: "Notes for Cal", startDate: Date(), endDate: Date()) {
+      (rfc) in
+      expectation3.fulfill()
+    }
+    wait(for: [expectation3], timeout: 4.0)
+    
+    XCTAssert(mocEKEventStore.events.count == 1)
+    XCTAssert(mocEKEventStore.reminders.count == 0)
+    
+    let expectation4 = self.expectation(description: "remove cal event")
+    rLib.removeEvent(title: "Cal0", startDate: Date(), endDate: Date()) {
+      (rfc) in
+      expectation4.fulfill()
+    }
+    wait(for: [expectation4], timeout: 4.0)
+    
+    XCTAssert(mocEKEventStore.events.count == 0)
+    XCTAssert(mocEKEventStore.reminders.count == 0)
     
   }
   
@@ -88,7 +250,7 @@ class reminderLibTests: XCTestCase {
     
     let expectation = self.expectation(description: "Add reminder")
     var alarmTime = Date().addingTimeInterval(1*60*24*3)
-    let rLib = Reminder()
+    
     
     rLib.addReminder(title: "Bozo call home", notes: "Notes for Bozo",
                      priority: 1, alarmTime: alarmTime) {
@@ -101,10 +263,8 @@ class reminderLibTests: XCTestCase {
     }
     
     wait(for: [expectation], timeout: 3.0)
-    
-    
+
     // Now get our reminder
-    
     let startDate = Date().addingTimeInterval(60*24*2)
     let endDate = Date().addingTimeInterval(1*60*24*4)
     let expectation2 = self.expectation(description: "Query reminders")
@@ -162,36 +322,6 @@ class reminderLibTests: XCTestCase {
     wait(for: [expectation4], timeout: 3.0)
   }
   
-  
-  // Grab Daylight_Savings_Entry
-  //   should work on all simulators
-  func testGetEvents() {
-    
-    let expectation = self.expectation(description: "Get Events")
-    
-    let dateString0 = "2018-11-3 9:56:25pm"
-    let dateString1 = "2018-11-4 11:21:25pm"
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ssa" //Input Format
-    dateFormatter.timeZone = TimeZone.current
-    let startDate = dateFormatter.date(from: dateString0)
-    let endDate = dateFormatter.date(from: dateString1)
-    
-    let rLib = Reminder()
-    
-    rLib.getEvents(startDate: startDate!,endDate: endDate!) {
-      (rfc) in self.PrEvents(rfc: rfc)
-      
-      expectation.fulfill()
-    }
-    
-    // Need way to delay
-    // Ref: https://www.swiftbysundell.com/posts/unit-testing-asynchronous-swift-code
-    waitForExpectations(timeout: 5, handler: nil)
-    
-  }
-  
-  
   func testRemoveEvent() {
     
     let expectation = self.expectation(description: "Get Events")
@@ -204,8 +334,6 @@ class reminderLibTests: XCTestCase {
     let startDate = dateFormatter.date(from: dateString0)
     let endDate = dateFormatter.date(from: dateString1)
     
-    let rLib = Reminder()
-    
     rLib.removeEvent(title: "Test123-reminderLib", startDate: startDate!, endDate: endDate!) {
       
       h in print("\(String(describing: h))")
@@ -213,11 +341,8 @@ class reminderLibTests: XCTestCase {
       
     }
     waitForExpectations(timeout: 5, handler: nil)
-    
-    
-    
   }
-
+  
   
   func testAddCalEvent() {
     
@@ -231,8 +356,6 @@ class reminderLibTests: XCTestCase {
     let startDate = dateFormatter.date(from: dateString0)
     let endDate = dateFormatter.date(from: dateString1)
     
-    let rLib = Reminder()
-    
     rLib.addCalEvent(title: self.TestTitle, notes: "Notes on Bozo", startDate: startDate!, endDate: endDate!) {
       (h) in
       print(h)
@@ -242,7 +365,7 @@ class reminderLibTests: XCTestCase {
     waitForExpectations(timeout: 5, handler: nil)
     
   }
-
+  
   
   func testGetSumMulOf() {
     let expectation = self.expectation(description: "Sum up values")
@@ -255,7 +378,7 @@ class reminderLibTests: XCTestCase {
     }
     waitForExpectations(timeout: 3, handler: nil)
   }
-
+  
   
   func testExample() {
     // This is an example of a functional test case.

@@ -2,6 +2,40 @@
 import EventKit
 
 // Just for ideas ... you can delete, when done
+
+struct Product {
+  var name: String
+  var cost: Double
+}
+
+struct Coupon {
+  var code: String
+  var discountPercentage: Double
+}
+
+
+class PriceCalculator {
+  static func calculateFinalPrice(for products: [Product],
+                                  applying coupon: Coupon?) -> Double {
+    
+    var finalPrice = products.reduce(0) { price, product
+      in
+      return price + product.cost
+    }
+    
+    if let coupon = coupon {
+      let multiplier = coupon.discountPercentage / 100
+      let discount = Double(finalPrice) * multiplier
+      finalPrice -= Double(discount)
+    }
+    
+    return finalPrice
+  }
+}
+
+
+
+
 func getSumMulOf(array:[Int],
                  handler: @escaping (([Int])->Int)) {
   
@@ -19,7 +53,8 @@ func getSumMulOf(array:[Int],
 
 class Reminder {
   
-  let eventStore = EKEventStore()
+  //let eventStore = EKEventStore()
+  let eventStore: EKEventStore
   
   struct ResultFromCall {
     var status: String?
@@ -28,6 +63,54 @@ class Reminder {
     var e: [EKEvent]?
     var r: [EKReminder]?
   }
+  
+  
+  init(eventStore: EKEventStore = EKEventStore()) {
+    self.eventStore = eventStore
+  }
+  
+  func addReminderHack(title: String,
+                   notes: String,
+                   priority: Int,
+                   alarmTime: Date,
+                   handler: @escaping ((ResultFromCall)->Void))  {
+    
+    var rfc = ResultFromCall()
+    eventStore.requestAccess(to: EKEntityType.reminder, completion: {
+      granted, error in
+      if (granted) && (error == nil) {
+        rfc.granted = "granted \(granted)"
+        
+        let reminder:EKReminder = EKReminder(eventStore: self.eventStore)
+        reminder.title = title
+        reminder.priority = priority
+        
+        //  Below to show completed
+        //reminder.completionDate = Date()
+        
+        reminder.notes = notes
+        
+        ///let alarmTime = Date().addingTimeInterval(1*60*24*3)
+        let alarm = EKAlarm(absoluteDate: alarmTime)
+        reminder.addAlarm(alarm)
+        reminder.calendar = self.eventStore.defaultCalendarForNewReminders()
+        
+        do {
+          try self.eventStore.save(reminder, commit: true)
+        } catch {
+          rfc.status = "Cannot save"
+          handler(rfc)
+          return
+        }
+        
+        rfc.status = "Reminder saved"
+        handler(rfc)
+        
+      }
+    })
+  }
+  
+  
   
   func addReminder(title: String,
                    notes: String,
@@ -81,7 +164,7 @@ class Reminder {
     self.eventStore.requestAccess(to: EKEntityType.event, completion: {
       granted, error in
       if (granted) && (error == nil) {
-        print("granted \(granted)")
+
         
         let event:EKEvent = EKEvent(eventStore: self.eventStore)
         event.title = title
@@ -241,21 +324,19 @@ class Reminder {
         rfc.granted = "granted \(granted)"
         
         let predicate: NSPredicate? = self.eventStore.predicateForReminders(in: nil)
+
         if let aPredicate = predicate {
           self.eventStore.fetchReminders(matching: aPredicate, completion: {(_ reminders: [EKReminder]?) -> Void in
             
             rfc.r = reminders
             rfc.status = "Reminder Updated"
             
-            
             for reminder: EKReminder? in reminders ?? [EKReminder?]() {
               // Do something for each reminder.
               
-              if let title = reminder?.title {
-                
-                if title.range(of: title) != nil {
-                  
-                  
+              if let reminderTitle = reminder?.title {
+                if reminderTitle.range(of: title) != nil {
+
                   do {
                     try self.eventStore.remove(reminder!, commit: true)
                   } catch {
