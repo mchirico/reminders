@@ -14,11 +14,12 @@ class MocEKEventStore: EKEventStore {
   var reminders = [EKReminder]()
   var events = [EKEvent]()
   var pred = NSPredicate()
+  var accessRequested = false
+  var countDefaultCalendarForNewReminders = 0
   
   open override func requestAccess(to entityType: EKEntityType, completion: @escaping EKEventStoreRequestAccessCompletionHandler) {
-    
+    self.accessRequested = true
     completion( true , error)
-    
   }
   
   open override func save(_ reminder: EKReminder, commit: Bool) throws {
@@ -30,24 +31,23 @@ class MocEKEventStore: EKEventStore {
     events.append(event)
   }
   
-  
   open override func fetchReminders(matching predicate: NSPredicate, completion: @escaping ([EKReminder]?) -> Void) -> Any {
-    
-    
-    
     completion(reminders)
     return "return"
   }
   
+  open override func defaultCalendarForNewReminders() -> EKCalendar? {
+    self.countDefaultCalendarForNewReminders += 1
+    return super.defaultCalendarForNewReminders()
+  }
+  
+
   open override func predicateForReminders(in calendars: [EKCalendar]?) -> NSPredicate {
-    
     return pred
   }
   
   open override func remove(_ reminder: EKReminder, commit: Bool) throws {
-  
     reminders = reminders.filter(){$0.title != reminder.title}
-    
   }
   
   open override func remove(_ event: EKEvent, span: EKSpan) throws {
@@ -55,19 +55,17 @@ class MocEKEventStore: EKEventStore {
   }
   
   open override func predicateForEvents(withStart startDate: Date, end endDate: Date, calendars: [EKCalendar]?) -> NSPredicate {
-    
     return pred
   }
   
   open override func events(matching predicate: NSPredicate) -> [EKEvent] {
-    
     return events
   }
 }
 
 
 class reminderLibTests: XCTestCase {
-
+  
   let rLib = Reminder(eventStore: MocEKEventStore())
   //let rLib = Reminder() // Uncomment for live testing
   
@@ -92,10 +90,7 @@ class reminderLibTests: XCTestCase {
       
       expectation.fulfill()
     }
-    
-    
     waitForExpectations(timeout: 5, handler: nil)
-    
   }
   
   override func tearDown() {
@@ -120,7 +115,9 @@ class reminderLibTests: XCTestCase {
     
   }
   
-  
+  // Take out, but neat example
+  // Ref: https://www.swiftbysundell.com/posts/mocking-in-swift
+  //      https://www.swiftbysundell.com/posts/refactoring-swift-code-for-testability
   func testCalculatingFinalPriceWithCoupon() {
     let products = [
       Product(name: "A", cost: 30),
@@ -164,12 +161,19 @@ class reminderLibTests: XCTestCase {
     let mocEKEventStore = MocEKEventStore()
     let rLib = Reminder(eventStore: mocEKEventStore)
     
+    
+    let expectationAddR = self.expectation(description: "add reminder")
+    
     rLib.addReminderHack(title: "junk", notes: "Notes", priority: 3, alarmTime: Date()) {
       
       (rfc) in
       XCTAssert(rfc.granted == "granted true")
       print("status: \(String(describing: rfc.status))")
+      expectationAddR.fulfill()
     }
+
+    print("moc: \(mocEKEventStore.reminders[0].calendarItemIdentifier)")
+    wait(for: [expectationAddR], timeout: 3.0)
     
     XCTAssert(mocEKEventStore.events.count == 0)
     XCTAssert(mocEKEventStore.reminders.count == 1)
@@ -179,7 +183,7 @@ class reminderLibTests: XCTestCase {
       
       (rfc) in
       print("rfc in test: \(rfc)")
-       expectation.fulfill()
+      expectation.fulfill()
     }
     wait(for: [expectation], timeout: 3.0)
     
@@ -223,6 +227,12 @@ class reminderLibTests: XCTestCase {
     
   }
   
+  func testMoc2() {
+    
+  }
+  
+  
+  
   
   func PrEvents(rfc: Reminder.ResultFromCall) {
     print("....\n\n")
@@ -263,7 +273,7 @@ class reminderLibTests: XCTestCase {
     }
     
     wait(for: [expectation], timeout: 3.0)
-
+    
     // Now get our reminder
     let startDate = Date().addingTimeInterval(60*24*2)
     let endDate = Date().addingTimeInterval(1*60*24*4)

@@ -60,6 +60,7 @@ class Reminder {
     var status: String?
     var granted: String?
     var notes: String?
+    var calendarItemIdentifier: String?
     var e: [EKEvent]?
     var r: [EKReminder]?
   }
@@ -84,6 +85,7 @@ class Reminder {
         let reminder:EKReminder = EKReminder(eventStore: self.eventStore)
         reminder.title = title
         reminder.priority = priority
+        rfc.calendarItemIdentifier = reminder.calendarItemIdentifier
         
         //  Below to show completed
         //reminder.completionDate = Date()
