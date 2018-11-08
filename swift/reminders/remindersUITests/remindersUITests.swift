@@ -1,14 +1,14 @@
 //
-//  remindersUITests.swift
-//  remindersUITests
+//  RemindersUITests.swift
+//  RemindersUITests
 //
-//  Created by Michael Chirico on 11/3/18.
+//  Created by Michael Chirico on 11/7/18.
 //  Copyright © 2018 Michael Chirico. All rights reserved.
 //
 
 import XCTest
 
-class remindersUITests: XCTestCase {
+class RemindersUITests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

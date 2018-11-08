@@ -7,68 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A54BE013218F613F00AF0554 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54BE012218F613F00AF0554 /* Reminder.swift */; };
-		A54BE016218F807300AF0554 /* ReminderLibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54BE015218F807300AF0554 /* ReminderLibTests.swift */; };
-		A54EFACE218DD77D0071880B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EFACD218DD77D0071880B /* AppDelegate.swift */; };
-		A54EFAD0218DD77D0071880B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EFACF218DD77D0071880B /* ViewController.swift */; };
-		A54EFAD3218DD77D0071880B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A54EFAD1218DD77D0071880B /* Main.storyboard */; };
-		A54EFAD5218DD77E0071880B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A54EFAD4218DD77E0071880B /* Assets.xcassets */; };
-		A54EFAD8218DD77E0071880B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A54EFAD6218DD77E0071880B /* LaunchScreen.storyboard */; };
-		A54EFAE3218DD77E0071880B /* remindersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EFAE2218DD77E0071880B /* remindersTests.swift */; };
-		A54EFAEE218DD77E0071880B /* remindersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EFAED218DD77E0071880B /* remindersUITests.swift */; };
+		A53D78A22193BC3100FF6233 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53D78A12193BC3100FF6233 /* AppDelegate.swift */; };
+		A53D78A42193BC3100FF6233 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53D78A32193BC3100FF6233 /* ViewController.swift */; };
+		A53D78A72193BC3100FF6233 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A53D78A52193BC3100FF6233 /* Main.storyboard */; };
+		A53D78A92193BC3200FF6233 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A53D78A82193BC3200FF6233 /* Assets.xcassets */; };
+		A53D78AC2193BC3200FF6233 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A53D78AA2193BC3200FF6233 /* LaunchScreen.storyboard */; };
+		A53D78B72193BC3200FF6233 /* RemindersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53D78B62193BC3200FF6233 /* RemindersTests.swift */; };
+		A53D78C22193BC3200FF6233 /* RemindersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53D78C12193BC3200FF6233 /* RemindersUITests.swift */; };
+		A53D78D12193BC8F00FF6233 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53D78D02193BC8F00FF6233 /* Reminder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A54EFADF218DD77E0071880B /* PBXContainerItemProxy */ = {
+		A53D78B32193BC3200FF6233 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A54EFAC2218DD77D0071880B /* Project object */;
+			containerPortal = A53D78962193BC3100FF6233 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A54EFAC9218DD77D0071880B;
-			remoteInfo = reminders;
+			remoteGlobalIDString = A53D789D2193BC3100FF6233;
+			remoteInfo = Reminders;
 		};
-		A54EFAEA218DD77E0071880B /* PBXContainerItemProxy */ = {
+		A53D78BE2193BC3200FF6233 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A54EFAC2218DD77D0071880B /* Project object */;
+			containerPortal = A53D78962193BC3100FF6233 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A54EFAC9218DD77D0071880B;
-			remoteInfo = reminders;
+			remoteGlobalIDString = A53D789D2193BC3100FF6233;
+			remoteInfo = Reminders;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A54BE012218F613F00AF0554 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
-		A54BE015218F807300AF0554 /* ReminderLibTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderLibTests.swift; sourceTree = "<group>"; };
-		A54EFACA218DD77D0071880B /* reminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A54EFACD218DD77D0071880B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A54EFACF218DD77D0071880B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A54EFAD2218DD77D0071880B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A54EFAD4218DD77E0071880B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A54EFAD7218DD77E0071880B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A54EFAD9218DD77E0071880B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A54EFADE218DD77E0071880B /* remindersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = remindersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A54EFAE2218DD77E0071880B /* remindersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = remindersTests.swift; sourceTree = "<group>"; };
-		A54EFAE4218DD77E0071880B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A54EFAE9218DD77E0071880B /* remindersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = remindersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A54EFAED218DD77E0071880B /* remindersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = remindersUITests.swift; sourceTree = "<group>"; };
-		A54EFAEF218DD77E0071880B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A53D789E2193BC3100FF6233 /* Reminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A53D78A12193BC3100FF6233 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A53D78A32193BC3100FF6233 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A53D78A62193BC3100FF6233 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A53D78A82193BC3200FF6233 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A53D78AB2193BC3200FF6233 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A53D78AD2193BC3200FF6233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A53D78B22193BC3200FF6233 /* RemindersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RemindersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A53D78B62193BC3200FF6233 /* RemindersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersTests.swift; sourceTree = "<group>"; };
+		A53D78B82193BC3200FF6233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A53D78BD2193BC3200FF6233 /* RemindersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RemindersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A53D78C12193BC3200FF6233 /* RemindersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersUITests.swift; sourceTree = "<group>"; };
+		A53D78C32193BC3200FF6233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A53D78D02193BC8F00FF6233 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A54EFAC7218DD77D0071880B /* Frameworks */ = {
+		A53D789B2193BC3100FF6233 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A54EFADB218DD77E0071880B /* Frameworks */ = {
+		A53D78AF2193BC3200FF6233 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A54EFAE6218DD77E0071880B /* Frameworks */ = {
+		A53D78BA2193BC3200FF6233 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -78,155 +76,147 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A54BE011218F611700AF0554 /* Reminder Lib */ = {
+		A53D78952193BC3100FF6233 = {
 			isa = PBXGroup;
 			children = (
-				A54BE014218F802300AF0554 /* Tests */,
-				A54BE012218F613F00AF0554 /* Reminder.swift */,
-			);
-			path = "Reminder Lib";
-			sourceTree = "<group>";
-		};
-		A54BE014218F802300AF0554 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				A54BE015218F807300AF0554 /* ReminderLibTests.swift */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		A54EFAC1218DD77D0071880B = {
-			isa = PBXGroup;
-			children = (
-				A54BE011218F611700AF0554 /* Reminder Lib */,
-				A54EFACC218DD77D0071880B /* reminders */,
-				A54EFAE1218DD77E0071880B /* remindersTests */,
-				A54EFAEC218DD77E0071880B /* remindersUITests */,
-				A54EFACB218DD77D0071880B /* Products */,
+				A53D78CF2193BC6F00FF6233 /* Reminder Lib */,
+				A53D78A02193BC3100FF6233 /* Reminders */,
+				A53D78B52193BC3200FF6233 /* RemindersTests */,
+				A53D78C02193BC3200FF6233 /* RemindersUITests */,
+				A53D789F2193BC3100FF6233 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A54EFACB218DD77D0071880B /* Products */ = {
+		A53D789F2193BC3100FF6233 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A54EFACA218DD77D0071880B /* reminders.app */,
-				A54EFADE218DD77E0071880B /* remindersTests.xctest */,
-				A54EFAE9218DD77E0071880B /* remindersUITests.xctest */,
+				A53D789E2193BC3100FF6233 /* Reminders.app */,
+				A53D78B22193BC3200FF6233 /* RemindersTests.xctest */,
+				A53D78BD2193BC3200FF6233 /* RemindersUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A54EFACC218DD77D0071880B /* reminders */ = {
+		A53D78A02193BC3100FF6233 /* Reminders */ = {
 			isa = PBXGroup;
 			children = (
-				A54EFACD218DD77D0071880B /* AppDelegate.swift */,
-				A54EFACF218DD77D0071880B /* ViewController.swift */,
-				A54EFAD1218DD77D0071880B /* Main.storyboard */,
-				A54EFAD4218DD77E0071880B /* Assets.xcassets */,
-				A54EFAD6218DD77E0071880B /* LaunchScreen.storyboard */,
-				A54EFAD9218DD77E0071880B /* Info.plist */,
+				A53D78A12193BC3100FF6233 /* AppDelegate.swift */,
+				A53D78A32193BC3100FF6233 /* ViewController.swift */,
+				A53D78A52193BC3100FF6233 /* Main.storyboard */,
+				A53D78A82193BC3200FF6233 /* Assets.xcassets */,
+				A53D78AA2193BC3200FF6233 /* LaunchScreen.storyboard */,
+				A53D78AD2193BC3200FF6233 /* Info.plist */,
 			);
-			path = reminders;
+			path = Reminders;
 			sourceTree = "<group>";
 		};
-		A54EFAE1218DD77E0071880B /* remindersTests */ = {
+		A53D78B52193BC3200FF6233 /* RemindersTests */ = {
 			isa = PBXGroup;
 			children = (
-				A54EFAE2218DD77E0071880B /* remindersTests.swift */,
-				A54EFAE4218DD77E0071880B /* Info.plist */,
+				A53D78B62193BC3200FF6233 /* RemindersTests.swift */,
+				A53D78B82193BC3200FF6233 /* Info.plist */,
 			);
-			path = remindersTests;
+			path = RemindersTests;
 			sourceTree = "<group>";
 		};
-		A54EFAEC218DD77E0071880B /* remindersUITests */ = {
+		A53D78C02193BC3200FF6233 /* RemindersUITests */ = {
 			isa = PBXGroup;
 			children = (
-				A54EFAED218DD77E0071880B /* remindersUITests.swift */,
-				A54EFAEF218DD77E0071880B /* Info.plist */,
+				A53D78C12193BC3200FF6233 /* RemindersUITests.swift */,
+				A53D78C32193BC3200FF6233 /* Info.plist */,
 			);
-			path = remindersUITests;
+			path = RemindersUITests;
+			sourceTree = "<group>";
+		};
+		A53D78CF2193BC6F00FF6233 /* Reminder Lib */ = {
+			isa = PBXGroup;
+			children = (
+				A53D78D02193BC8F00FF6233 /* Reminder.swift */,
+			);
+			path = "Reminder Lib";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A54EFAC9218DD77D0071880B /* reminders */ = {
+		A53D789D2193BC3100FF6233 /* Reminders */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A54EFAF2218DD77E0071880B /* Build configuration list for PBXNativeTarget "reminders" */;
+			buildConfigurationList = A53D78C62193BC3200FF6233 /* Build configuration list for PBXNativeTarget "Reminders" */;
 			buildPhases = (
-				A54EFAC6218DD77D0071880B /* Sources */,
-				A54EFAC7218DD77D0071880B /* Frameworks */,
-				A54EFAC8218DD77D0071880B /* Resources */,
+				A53D789A2193BC3100FF6233 /* Sources */,
+				A53D789B2193BC3100FF6233 /* Frameworks */,
+				A53D789C2193BC3100FF6233 /* Resources */,
+				A53D78D82193BFB300FF6233 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = reminders;
-			productName = reminders;
-			productReference = A54EFACA218DD77D0071880B /* reminders.app */;
+			name = Reminders;
+			productName = Reminders;
+			productReference = A53D789E2193BC3100FF6233 /* Reminders.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A54EFADD218DD77E0071880B /* remindersTests */ = {
+		A53D78B12193BC3200FF6233 /* RemindersTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A54EFAF5218DD77E0071880B /* Build configuration list for PBXNativeTarget "remindersTests" */;
+			buildConfigurationList = A53D78C92193BC3200FF6233 /* Build configuration list for PBXNativeTarget "RemindersTests" */;
 			buildPhases = (
-				A54EFADA218DD77E0071880B /* Sources */,
-				A54EFADB218DD77E0071880B /* Frameworks */,
-				A54EFADC218DD77E0071880B /* Resources */,
+				A53D78AE2193BC3200FF6233 /* Sources */,
+				A53D78AF2193BC3200FF6233 /* Frameworks */,
+				A53D78B02193BC3200FF6233 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A54EFAE0218DD77E0071880B /* PBXTargetDependency */,
+				A53D78B42193BC3200FF6233 /* PBXTargetDependency */,
 			);
-			name = remindersTests;
-			productName = remindersTests;
-			productReference = A54EFADE218DD77E0071880B /* remindersTests.xctest */;
+			name = RemindersTests;
+			productName = RemindersTests;
+			productReference = A53D78B22193BC3200FF6233 /* RemindersTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		A54EFAE8218DD77E0071880B /* remindersUITests */ = {
+		A53D78BC2193BC3200FF6233 /* RemindersUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A54EFAF8218DD77E0071880B /* Build configuration list for PBXNativeTarget "remindersUITests" */;
+			buildConfigurationList = A53D78CC2193BC3200FF6233 /* Build configuration list for PBXNativeTarget "RemindersUITests" */;
 			buildPhases = (
-				A54EFAE5218DD77E0071880B /* Sources */,
-				A54EFAE6218DD77E0071880B /* Frameworks */,
-				A54EFAE7218DD77E0071880B /* Resources */,
+				A53D78B92193BC3200FF6233 /* Sources */,
+				A53D78BA2193BC3200FF6233 /* Frameworks */,
+				A53D78BB2193BC3200FF6233 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A54EFAEB218DD77E0071880B /* PBXTargetDependency */,
+				A53D78BF2193BC3200FF6233 /* PBXTargetDependency */,
 			);
-			name = remindersUITests;
-			productName = remindersUITests;
-			productReference = A54EFAE9218DD77E0071880B /* remindersUITests.xctest */;
+			name = RemindersUITests;
+			productName = RemindersUITests;
+			productReference = A53D78BD2193BC3200FF6233 /* RemindersUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A54EFAC2218DD77D0071880B /* Project object */ = {
+		A53D78962193BC3100FF6233 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Michael Chirico";
 				TargetAttributes = {
-					A54EFAC9218DD77D0071880B = {
+					A53D789D2193BC3100FF6233 = {
 						CreatedOnToolsVersion = 10.1;
 					};
-					A54EFADD218DD77E0071880B = {
+					A53D78B12193BC3200FF6233 = {
 						CreatedOnToolsVersion = 10.1;
-						TestTargetID = A54EFAC9218DD77D0071880B;
+						TestTargetID = A53D789D2193BC3100FF6233;
 					};
-					A54EFAE8218DD77E0071880B = {
+					A53D78BC2193BC3200FF6233 = {
 						CreatedOnToolsVersion = 10.1;
-						TestTargetID = A54EFAC9218DD77D0071880B;
+						TestTargetID = A53D789D2193BC3100FF6233;
 					};
 				};
 			};
-			buildConfigurationList = A54EFAC5218DD77D0071880B /* Build configuration list for PBXProject "reminders" */;
+			buildConfigurationList = A53D78992193BC3100FF6233 /* Build configuration list for PBXProject "Reminders" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -234,37 +224,37 @@
 				en,
 				Base,
 			);
-			mainGroup = A54EFAC1218DD77D0071880B;
-			productRefGroup = A54EFACB218DD77D0071880B /* Products */;
+			mainGroup = A53D78952193BC3100FF6233;
+			productRefGroup = A53D789F2193BC3100FF6233 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A54EFAC9218DD77D0071880B /* reminders */,
-				A54EFADD218DD77E0071880B /* remindersTests */,
-				A54EFAE8218DD77E0071880B /* remindersUITests */,
+				A53D789D2193BC3100FF6233 /* Reminders */,
+				A53D78B12193BC3200FF6233 /* RemindersTests */,
+				A53D78BC2193BC3200FF6233 /* RemindersUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A54EFAC8218DD77D0071880B /* Resources */ = {
+		A53D789C2193BC3100FF6233 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A54EFAD8218DD77E0071880B /* LaunchScreen.storyboard in Resources */,
-				A54EFAD5218DD77E0071880B /* Assets.xcassets in Resources */,
-				A54EFAD3218DD77D0071880B /* Main.storyboard in Resources */,
+				A53D78AC2193BC3200FF6233 /* LaunchScreen.storyboard in Resources */,
+				A53D78A92193BC3200FF6233 /* Assets.xcassets in Resources */,
+				A53D78A72193BC3100FF6233 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A54EFADC218DD77E0071880B /* Resources */ = {
+		A53D78B02193BC3200FF6233 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A54EFAE7218DD77E0071880B /* Resources */ = {
+		A53D78BB2193BC3200FF6233 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -273,62 +263,81 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A53D78D82193BFB300FF6233 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		A54EFAC6218DD77D0071880B /* Sources */ = {
+		A53D789A2193BC3100FF6233 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A54EFAD0218DD77D0071880B /* ViewController.swift in Sources */,
-				A54EFACE218DD77D0071880B /* AppDelegate.swift in Sources */,
-				A54BE013218F613F00AF0554 /* Reminder.swift in Sources */,
+				A53D78D12193BC8F00FF6233 /* Reminder.swift in Sources */,
+				A53D78A42193BC3100FF6233 /* ViewController.swift in Sources */,
+				A53D78A22193BC3100FF6233 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A54EFADA218DD77E0071880B /* Sources */ = {
+		A53D78AE2193BC3200FF6233 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A54EFAE3218DD77E0071880B /* remindersTests.swift in Sources */,
-				A54BE016218F807300AF0554 /* ReminderLibTests.swift in Sources */,
+				A53D78B72193BC3200FF6233 /* RemindersTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A54EFAE5218DD77E0071880B /* Sources */ = {
+		A53D78B92193BC3200FF6233 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A54EFAEE218DD77E0071880B /* remindersUITests.swift in Sources */,
+				A53D78C22193BC3200FF6233 /* RemindersUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A54EFAE0218DD77E0071880B /* PBXTargetDependency */ = {
+		A53D78B42193BC3200FF6233 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A54EFAC9218DD77D0071880B /* reminders */;
-			targetProxy = A54EFADF218DD77E0071880B /* PBXContainerItemProxy */;
+			target = A53D789D2193BC3100FF6233 /* Reminders */;
+			targetProxy = A53D78B32193BC3200FF6233 /* PBXContainerItemProxy */;
 		};
-		A54EFAEB218DD77E0071880B /* PBXTargetDependency */ = {
+		A53D78BF2193BC3200FF6233 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A54EFAC9218DD77D0071880B /* reminders */;
-			targetProxy = A54EFAEA218DD77E0071880B /* PBXContainerItemProxy */;
+			target = A53D789D2193BC3100FF6233 /* Reminders */;
+			targetProxy = A53D78BE2193BC3200FF6233 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A54EFAD1218DD77D0071880B /* Main.storyboard */ = {
+		A53D78A52193BC3100FF6233 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A54EFAD2218DD77D0071880B /* Base */,
+				A53D78A62193BC3100FF6233 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		A54EFAD6218DD77E0071880B /* LaunchScreen.storyboard */ = {
+		A53D78AA2193BC3200FF6233 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A54EFAD7218DD77E0071880B /* Base */,
+				A53D78AB2193BC3200FF6233 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -336,7 +345,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A54EFAF0218DD77E0071880B /* Debug */ = {
+		A53D78C42193BC3200FF6233 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -397,7 +406,7 @@
 			};
 			name = Debug;
 		};
-		A54EFAF1218DD77E0071880B /* Release */ = {
+		A53D78C52193BC3200FF6233 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -452,164 +461,164 @@
 			};
 			name = Release;
 		};
-		A54EFAF3218DD77E0071880B /* Debug */ = {
+		A53D78C72193BC3200FF6233 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UWJCYGVG9Z;
-				INFOPLIST_FILE = reminders/Info.plist;
+				INFOPLIST_FILE = Reminders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.reminders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.Reminders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		A54EFAF4218DD77E0071880B /* Release */ = {
+		A53D78C82193BC3200FF6233 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UWJCYGVG9Z;
-				INFOPLIST_FILE = reminders/Info.plist;
+				INFOPLIST_FILE = Reminders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.reminders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.Reminders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		A54EFAF6218DD77E0071880B /* Debug */ = {
+		A53D78CA2193BC3200FF6233 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UWJCYGVG9Z;
-				INFOPLIST_FILE = remindersTests/Info.plist;
+				INFOPLIST_FILE = RemindersTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.remindersTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.RemindersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/reminders.app/reminders";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reminders.app/Reminders";
 			};
 			name = Debug;
 		};
-		A54EFAF7218DD77E0071880B /* Release */ = {
+		A53D78CB2193BC3200FF6233 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UWJCYGVG9Z;
-				INFOPLIST_FILE = remindersTests/Info.plist;
+				INFOPLIST_FILE = RemindersTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.remindersTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.RemindersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/reminders.app/reminders";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reminders.app/Reminders";
 			};
 			name = Release;
 		};
-		A54EFAF9218DD77E0071880B /* Debug */ = {
+		A53D78CD2193BC3200FF6233 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UWJCYGVG9Z;
-				INFOPLIST_FILE = remindersUITests/Info.plist;
+				INFOPLIST_FILE = RemindersUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.remindersUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.RemindersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = reminders;
+				TEST_TARGET_NAME = Reminders;
 			};
 			name = Debug;
 		};
-		A54EFAFA218DD77E0071880B /* Release */ = {
+		A53D78CE2193BC3200FF6233 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UWJCYGVG9Z;
-				INFOPLIST_FILE = remindersUITests/Info.plist;
+				INFOPLIST_FILE = RemindersUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.remindersUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.RemindersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = reminders;
+				TEST_TARGET_NAME = Reminders;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A54EFAC5218DD77D0071880B /* Build configuration list for PBXProject "reminders" */ = {
+		A53D78992193BC3100FF6233 /* Build configuration list for PBXProject "Reminders" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A54EFAF0218DD77E0071880B /* Debug */,
-				A54EFAF1218DD77E0071880B /* Release */,
+				A53D78C42193BC3200FF6233 /* Debug */,
+				A53D78C52193BC3200FF6233 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A54EFAF2218DD77E0071880B /* Build configuration list for PBXNativeTarget "reminders" */ = {
+		A53D78C62193BC3200FF6233 /* Build configuration list for PBXNativeTarget "Reminders" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A54EFAF3218DD77E0071880B /* Debug */,
-				A54EFAF4218DD77E0071880B /* Release */,
+				A53D78C72193BC3200FF6233 /* Debug */,
+				A53D78C82193BC3200FF6233 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A54EFAF5218DD77E0071880B /* Build configuration list for PBXNativeTarget "remindersTests" */ = {
+		A53D78C92193BC3200FF6233 /* Build configuration list for PBXNativeTarget "RemindersTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A54EFAF6218DD77E0071880B /* Debug */,
-				A54EFAF7218DD77E0071880B /* Release */,
+				A53D78CA2193BC3200FF6233 /* Debug */,
+				A53D78CB2193BC3200FF6233 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A54EFAF8218DD77E0071880B /* Build configuration list for PBXNativeTarget "remindersUITests" */ = {
+		A53D78CC2193BC3200FF6233 /* Build configuration list for PBXNativeTarget "RemindersUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A54EFAF9218DD77E0071880B /* Debug */,
-				A54EFAFA218DD77E0071880B /* Release */,
+				A53D78CD2193BC3200FF6233 /* Debug */,
+				A53D78CE2193BC3200FF6233 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A54EFAC2218DD77D0071880B /* Project object */;
+	rootObject = A53D78962193BC3100FF6233 /* Project object */;
 }

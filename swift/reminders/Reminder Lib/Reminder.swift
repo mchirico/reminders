@@ -1,4 +1,3 @@
-
 import EventKit
 
 // Just for ideas ... you can delete, when done
@@ -12,7 +11,6 @@ struct Coupon {
   var code: String
   var discountPercentage: Double
 }
-
 
 class PriceCalculator {
   static func calculateFinalPrice(for products: [Product],
@@ -33,11 +31,8 @@ class PriceCalculator {
   }
 }
 
-
-
-
-func getSumMulOf(array:[Int],
-                 handler: @escaping (([Int])->Int)) {
+func getSumMulOf(array: [Int],
+                 handler: @escaping (([Int]) -> Int)) {
   
   var sum: Int = 0
   var mul: Int = 1
@@ -47,7 +42,7 @@ func getSumMulOf(array:[Int],
   }
   
   DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-    print("sum+mul: \(handler([sum,mul]))")
+    print("sum+mul: \(handler([sum, mul]))")
   })
 }
 
@@ -60,30 +55,31 @@ class Reminder {
     var status: String?
     var granted: String?
     var notes: String?
-    var e: [EKEvent]?
-    var r: [EKReminder]?
+    var calendarItemIdentifier: String?
+    var event: [EKEvent]?
+    var reminder: [EKReminder]?
   }
-  
   
   init(eventStore: EKEventStore = EKEventStore()) {
     self.eventStore = eventStore
   }
   
   func addReminderHack(title: String,
-                   notes: String,
-                   priority: Int,
-                   alarmTime: Date,
-                   handler: @escaping ((ResultFromCall)->Void))  {
+                       notes: String,
+                       priority: Int,
+                       alarmTime: Date,
+                       handler: @escaping ((ResultFromCall) -> Void)) {
     
     var rfc = ResultFromCall()
-    eventStore.requestAccess(to: EKEntityType.reminder, completion: {
-      granted, error in
+    eventStore.requestAccess(to: EKEntityType.reminder,
+                             completion: { granted, error in
       if (granted) && (error == nil) {
         rfc.granted = "granted \(granted)"
         
-        let reminder:EKReminder = EKReminder(eventStore: self.eventStore)
+        let reminder: EKReminder = EKReminder(eventStore: self.eventStore)
         reminder.title = title
         reminder.priority = priority
+        rfc.calendarItemIdentifier = reminder.calendarItemIdentifier
         
         //  Below to show completed
         //reminder.completionDate = Date()
@@ -109,91 +105,84 @@ class Reminder {
       }
     })
   }
-  
-  
   
   func addReminder(title: String,
                    notes: String,
                    priority: Int,
                    alarmTime: Date,
-                   handler: @escaping ((ResultFromCall)->Void))  {
+                   handler: @escaping ((ResultFromCall) -> Void)) {
     
     var rfc = ResultFromCall()
-    eventStore.requestAccess(to: EKEntityType.reminder, completion: {
-      granted, error in
-      if (granted) && (error == nil) {
-        rfc.granted = "granted \(granted)"
-        
-        let reminder:EKReminder = EKReminder(eventStore: self.eventStore)
-        reminder.title = title
-        reminder.priority = priority
-        
-        //  Below to show completed
-        //reminder.completionDate = Date()
-        
-        reminder.notes = notes
-        
-        ///let alarmTime = Date().addingTimeInterval(1*60*24*3)
-        let alarm = EKAlarm(absoluteDate: alarmTime)
-        reminder.addAlarm(alarm)
-        reminder.calendar = self.eventStore.defaultCalendarForNewReminders()
-        
-        do {
-          try self.eventStore.save(reminder, commit: true)
-        } catch {
-          rfc.status = "Cannot save"
-          handler(rfc)
-          return
-        }
-        rfc.status = "Reminder saved"
-        handler(rfc)
-        
-      }
+    eventStore.requestAccess(to: EKEntityType.reminder,
+                             completion: { granted, error in
+                              if (granted) && (error == nil) {
+                                rfc.granted = "granted \(granted)"
+                                
+                                let reminder: EKReminder = EKReminder(eventStore: self.eventStore)
+                                reminder.title = title
+                                reminder.priority = priority
+                                
+                                //  Below to show completed
+                                //reminder.completionDate = Date()
+                                
+                                reminder.notes = notes
+                                
+                                ///let alarmTime = Date().addingTimeInterval(1*60*24*3)
+                                let alarm = EKAlarm(absoluteDate: alarmTime)
+                                reminder.addAlarm(alarm)
+                                reminder.calendar = self.eventStore.defaultCalendarForNewReminders()
+                                
+                                do {
+                                  try self.eventStore.save(reminder, commit: true)
+                                } catch {
+                                  rfc.status = "Cannot save"
+                                  handler(rfc)
+                                  return
+                                }
+                                rfc.status = "Reminder saved"
+                                handler(rfc)
+                                
+                              }
     })
   }
-  
   
   func addCalEvent(title: String,
                    notes: String,
                    startDate: Date,
                    endDate: Date,
-                   handler: @escaping ((ResultFromCall)->Void))  {
+                   handler: @escaping ((ResultFromCall) -> Void)) {
     
     var rfc = ResultFromCall()
     
-    self.eventStore.requestAccess(to: EKEntityType.event, completion: {
-      granted, error in
-      if (granted) && (error == nil) {
-
-        
-        let event:EKEvent = EKEvent(eventStore: self.eventStore)
-        event.title = title
-        event.startDate = startDate
-        event.endDate = endDate
-        event.notes = notes
-        event.calendar = self.eventStore.defaultCalendarForNewEvents
-        
-        
-        do {
-          try self.eventStore.save(event, span: EKSpan.thisEvent, commit: true)
-          rfc.notes = "title: \(String(describing: event.title))"
-        } catch {
-          print("Cannot save")
-          rfc.status = "Cannot save"
-          handler(rfc)
-          return
-        }
-        rfc.status = "Saved Event"
-        handler(rfc)
-      } else {
-        rfc.status = "No Access"
-        handler(rfc)
-      }
+    self.eventStore.requestAccess(to: EKEntityType.event,
+                                  completion: { granted, error in
+                                    if (granted) && (error == nil) {
+                                      
+                                      let event: EKEvent = EKEvent(eventStore: self.eventStore)
+                                      event.title = title
+                                      event.startDate = startDate
+                                      event.endDate = endDate
+                                      event.notes = notes
+                                      event.calendar = self.eventStore.defaultCalendarForNewEvents
+                                      
+                                      do {
+                                        try self.eventStore.save(event, span: EKSpan.thisEvent, commit: true)
+                                        rfc.notes = "title: \(String(describing: event.title))"
+                                      } catch {
+                                        print("Cannot save")
+                                        rfc.status = "Cannot save"
+                                        handler(rfc)
+                                        return
+                                      }
+                                      rfc.status = "Saved Event"
+                                      handler(rfc)
+                                    } else {
+                                      rfc.status = "No Access"
+                                      handler(rfc)
+                                    }
     })
     
-    
   }
-  
   
   /*
    Sample on How to Use getEvents:
@@ -201,11 +190,11 @@ class Reminder {
    */
   func testCalenderEntry() {
     
-    func PrEvents(rfc: ResultFromCall) {
-      if let events = rfc.e {
-        for i in events {
-          print("title: \(String(describing: i.title))")
-          print("date: \(String(describing: i.startDate))")
+    func prEvents(rfc: ResultFromCall) {
+      if let events = rfc.event {
+        for index in events {
+          print("title: \(String(describing: index.title))")
+          print("date: \(String(describing: index.startDate))")
         }
       }
     }
@@ -215,34 +204,32 @@ class Reminder {
     
     let rLib = Reminder()
     
-    rLib.getEvents(startDate: startDate,endDate: endDate) {
-      (rfc) in PrEvents(rfc: rfc)
+    rLib.getEvents(startDate: startDate,
+                   endDate: endDate) { (rfc) in prEvents(rfc: rfc)
     }
   }
   
-  
   func getReminders(startDate: Date,
                     endDate: Date,
-                    handler: @escaping ((ResultFromCall)->Void)) {
+                    handler: @escaping ((ResultFromCall) -> Void)) {
     
     var rfc = ResultFromCall()
-    eventStore.requestAccess(to: EKEntityType.reminder, completion: {
-      granted, error in
-      if (granted) && (error == nil) {
-        rfc.granted = "granted \(granted)"
-        
-        let predicate: NSPredicate? = self.eventStore.predicateForReminders(in: nil)
-        if let aPredicate = predicate {
-          self.eventStore.fetchReminders(matching: aPredicate, completion: {(_ reminders: [EKReminder]?) -> Void in
-            
-            rfc.r = reminders
-            handler(rfc)
-            
-          })
-          
-          
-        }
-      }
+    eventStore.requestAccess(to: EKEntityType.reminder,
+                             completion: { granted, error in
+                              if (granted) && (error == nil) {
+                                rfc.granted = "granted \(granted)"
+                                
+                                let predicate: NSPredicate? = self.eventStore.predicateForReminders(in: nil)
+                                if let aPredicate = predicate {
+                                  self.eventStore.fetchReminders(matching: aPredicate, completion: {(_ reminders: [EKReminder]?) -> Void in
+                                    
+                                    rfc.reminder = reminders
+                                    handler(rfc)
+                                    
+                                  })
+                                  
+                                }
+                              }
     })
     
   }
@@ -255,80 +242,77 @@ class Reminder {
                        
                        startDate: Date,
                        endDate: Date,
-                       handler: @escaping ((ResultFromCall)->Void)) {
+                       handler: @escaping ((ResultFromCall) -> Void)) {
     
     var rfc = ResultFromCall()
-    eventStore.requestAccess(to: EKEntityType.reminder, completion: {
-      granted, error in
-      if (granted) && (error == nil) {
-        rfc.granted = "granted \(granted)"
-        
-        let predicate: NSPredicate? = self.eventStore.predicateForReminders(in: nil)
-        if let aPredicate = predicate {
-          self.eventStore.fetchReminders(matching: aPredicate, completion: {(_ reminders: [EKReminder]?) -> Void in
-            
-            rfc.r = reminders
-            rfc.status = "Reminder Updated"
-            
-            
-            for reminder: EKReminder? in reminders ?? [EKReminder?]() {
-              // Do something for each reminder.
-              
-              if let title = reminder?.title {
-                
-                if title.range(of: title) != nil {
-                  
-                  reminder?.title = newTitle
-                  reminder?.notes = newNotes
-                  reminder?.priority = newPriority
-                  
-                  let alarm = EKAlarm(absoluteDate: newAlarmTime)
-                  reminder?.alarms = [alarm]
-                  // reminder.calendar = self.eventStore.defaultCalendarForNewReminders()
-                  
-                  do {
-                    try self.eventStore.save(reminder!, commit: true)
-                  } catch {
-                    rfc.status = "Could not update reminder"
-                    continue
-                  }
-                  rfc.status = "Reminder Updated"
-                }
-              }
-              
-            }
-            
-            handler(rfc)
-            
-            
-          })
-          
-          
-        }
-      }
+    eventStore.requestAccess(to: EKEntityType.reminder,
+                             completion: { granted, error in
+                              if (granted) && (error == nil) {
+                                rfc.granted = "granted \(granted)"
+                                
+                                let predicate: NSPredicate? = self.eventStore.predicateForReminders(in: nil)
+                                if let aPredicate = predicate {
+                                  self.eventStore.fetchReminders(matching: aPredicate, completion: {(_ reminders: [EKReminder]?) -> Void in
+                                    
+                                    rfc.reminder = reminders
+                                    rfc.status = "Reminder Updated"
+                                    
+                                    for reminder: EKReminder? in reminders ?? [EKReminder?]() {
+                                      // Do something for each reminder.
+                                      
+                                      if let title = reminder?.title {
+                                        
+                                        if title.range(of: title) != nil {
+                                          
+                                          reminder?.title = newTitle
+                                          reminder?.notes = newNotes
+                                          reminder?.priority = newPriority
+                                          
+                                          let alarm = EKAlarm(absoluteDate: newAlarmTime)
+                                          reminder?.alarms = [alarm]
+                                          // reminder.calendar = self.eventStore.defaultCalendarForNewReminders()
+                                          
+                                          do {
+                                            try self.eventStore.save(reminder!, commit: true)
+                                          } catch {
+                                            rfc.status = "Could not update reminder"
+                                            continue
+                                          }
+                                          rfc.status = "Reminder Updated"
+                                        }
+                                      }
+                                      
+                                    }
+                                    
+                                    handler(rfc)
+                                    
+                                  })
+                                  
+                                }
+                              }
     })
     
   }
-  
   
   func removeReminders(title: String,
                        
                        startDate: Date,
                        endDate: Date,
-                       handler: @escaping ((ResultFromCall)->Void)) {
+                       handler: @escaping ((ResultFromCall) -> Void)) {
     
     var rfc = ResultFromCall()
-    eventStore.requestAccess(to: EKEntityType.reminder, completion: {
-      granted, error in
+    eventStore.requestAccess(to: EKEntityType.reminder,
+                             completion: { granted, error in
       if (granted) && (error == nil) {
         rfc.granted = "granted \(granted)"
         
         let predicate: NSPredicate? = self.eventStore.predicateForReminders(in: nil)
-
+        
         if let aPredicate = predicate {
-          self.eventStore.fetchReminders(matching: aPredicate, completion: {(_ reminders: [EKReminder]?) -> Void in
+          self.eventStore.fetchReminders(matching: aPredicate,
+                                         completion: {(_ reminders: [EKReminder]?) -> Void in
             
-            rfc.r = reminders
+            rfc.reminder = reminders
             rfc.status = "Reminder Updated"
             
             for reminder: EKReminder? in reminders ?? [EKReminder?]() {
@@ -336,7 +320,7 @@ class Reminder {
               
               if let reminderTitle = reminder?.title {
                 if reminderTitle.range(of: title) != nil {
-
+                  
                   do {
                     try self.eventStore.remove(reminder!, commit: true)
                   } catch {
@@ -351,9 +335,7 @@ class Reminder {
             
             handler(rfc)
             
-            
           })
-          
           
         }
       }
@@ -361,37 +343,33 @@ class Reminder {
     
   }
   
-  
-  
   func getEvents(startDate: Date,
                  endDate: Date,
-                 handler: @escaping ((ResultFromCall)->Void)) {
+                 handler: @escaping ((ResultFromCall) -> Void)) {
     
     var rfc = ResultFromCall()
-    eventStore.requestAccess(to: EKEntityType.event, completion: {
-      granted, error in
-      if (granted) && (error == nil) {
-        let predicate = self.eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: nil)
-        let eV = self.eventStore.events(matching: predicate) as [EKEvent]?
-        rfc.e = eV
-        handler(rfc)
-        
-      }
+    eventStore.requestAccess(to: EKEntityType.event,
+                             completion: { granted, error in
+                              if (granted) && (error == nil) {
+                                let predicate = self.eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: nil)
+                                let eV = self.eventStore.events(matching: predicate) as [EKEvent]?
+                                rfc.event = eV
+                                handler(rfc)
+                                
+                              }
     })
     
   }
-  
-  
   
   // Returns remaining events -- events not deleted
   func removeEvent(title: String,
                    startDate: Date,
                    endDate: Date,
-                   handler: @escaping ((ResultFromCall)->Void)) {
+                   handler: @escaping ((ResultFromCall) -> Void)) {
     
     var rfc = ResultFromCall()
-    eventStore.requestAccess(to: EKEntityType.event, completion: {
-      granted, error in
+    eventStore.requestAccess(to: EKEntityType.event,
+                             completion: { granted, error in
       if (granted) && (error == nil) {
         print("\nREMOVE EVENT:\ngranted \(granted)")
         
@@ -402,13 +380,13 @@ class Reminder {
         let eV = self.eventStore.events(matching: predicate) as [EKEvent]?
         
         if eV != nil {
-          for i in eV! {
+          for index in eV! {
             
-            if i.title.range(of: title) != nil {
+            if index.title.range(of: title) != nil {
               print("YES" )
               
               do {
-                try self.eventStore.remove(i, span: EKSpan.thisEvent)
+                try self.eventStore.remove(index, span: EKSpan.thisEvent)
               } catch {
                 print("Problem removing")
                 rfc.status = "Problem removing"
@@ -417,16 +395,12 @@ class Reminder {
             }
             
           }
-          rfc.e = eV
+          rfc.event = eV
           handler(rfc)
         }
-        
         
       }
     })
   }
-  
-  
-  
   
 }
