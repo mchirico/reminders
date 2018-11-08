@@ -352,8 +352,8 @@ class Reminder {
                              completion: { granted, error in
                               if (granted) && (error == nil) {
                                 let predicate = self.eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: nil)
-                                let eV = self.eventStore.events(matching: predicate) as [EKEvent]?
-                                rfc.event = eV
+                                let events = self.eventStore.events(matching: predicate) as [EKEvent]?
+                                rfc.event = events
                                 handler(rfc)
                                 
                               }
@@ -377,10 +377,10 @@ class Reminder {
         
         print("startDate: \(startDate) endDate:\(endDate)")
         rfc.notes = "REMOVE  title: \(title), startDate: \(startDate), endDate:\(endDate)"
-        let eV = self.eventStore.events(matching: predicate) as [EKEvent]?
+        let events = self.eventStore.events(matching: predicate) as [EKEvent]?
         
-        if eV != nil {
-          for index in eV! {
+        if events != nil {
+          for index in events! {
             
             if index.title.range(of: title) != nil {
               print("YES" )
@@ -395,7 +395,7 @@ class Reminder {
             }
             
           }
-          rfc.event = eV
+          rfc.event = events
           handler(rfc)
         }
         

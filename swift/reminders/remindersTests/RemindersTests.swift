@@ -128,6 +128,7 @@ class ReminderLibTests: XCTestCase {
     // and be more confident in our tests.
     XCTAssertEqual(price, 110)
   }
+  
   func testMoc() {
     let mocEKEventStore = MocEKEventStore()
     let rLib = Reminder(eventStore: mocEKEventStore)
@@ -168,6 +169,7 @@ class ReminderLibTests: XCTestCase {
     // Reminder should be removed
     XCTAssert(mocEKEventStore.events.count == 0)
     XCTAssert(mocEKEventStore.reminders.count == 0)
+  
     let expectation3 = self.expectation(description: "add cal event")
     rLib.addCalEvent(title: "Cal0",
                      notes: "Notes for Cal",
